@@ -13,7 +13,9 @@ spec:
       protocol: TCP
       targetPort: 80
   selector:
-    app: nginx-deployment
+    #matches the label of the pods
+    #makes it possible for a service to refer to pods of different deployments
+    app: nginx-deployment 
   type: ClusterIP
 status:
   loadBalancer: {}

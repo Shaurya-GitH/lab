@@ -9,14 +9,16 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-deployment
+      #matches the labels of the pods as well as ownership of the replicaset
+      #makes it possible for pods of different deployments to have the same label
+      app: nginx-deployment 
   strategy:
     type: Recreate
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: nginx-deployment
+        app: nginx-deployment #label of the pods created
     spec:
       containers:
         - image: nginx
