@@ -2,10 +2,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    run: nginx-yaml
+    run: httpd-yaml
     hello: world
-  name: nginx-yaml
+  name: httpd-yaml
 spec:
   containers:
-  - image: nginx
-    name: nginx-yaml
+  - image: httpd
+    name: httpd-yaml
+
