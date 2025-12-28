@@ -4,6 +4,7 @@ metadata:
   labels:
     app: nginx-deployment
   name: nginx-recreate
+  namespace: my-ns
 spec:
   replicas: 1
   selector:

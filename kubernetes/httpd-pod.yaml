@@ -5,6 +5,7 @@ metadata:
     run: httpd-yaml
     hello: world
   name: httpd-yaml
+  namespace: my-ns
 spec:
   containers:
   - image: httpd
