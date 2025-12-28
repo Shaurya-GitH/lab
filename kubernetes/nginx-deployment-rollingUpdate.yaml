@@ -3,13 +3,17 @@ kind: Deployment
 metadata:
   labels:
     app: nginx-deployment
-  name: nginx-deployment
+  name: nginx-rolling-update
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nginx-deployment
-  strategy: {}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
   template:
     metadata:
       creationTimestamp: null
@@ -17,7 +21,7 @@ spec:
         app: nginx-deployment
     spec:
       containers:
-      - image: nginx
-        name: nginx
-        ports:
-          - containerPort: 80
+        - image: nginx
+          name: nginx
+          ports:
+            - containerPort: 80
