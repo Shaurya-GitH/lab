@@ -20,8 +20,9 @@ spec:
       labels:
         app: nginx-deployment #label of the pods created
     spec:
+      #all the containers in a pod can access each other through localhost
       containers:
         - image: nginx
           name: nginx
           ports:
-            - containerPort: 80
+            - containerPort: 80 #the port at which the image is exposed
