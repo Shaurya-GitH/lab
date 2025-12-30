@@ -20,3 +20,13 @@ spec:
           name: mealie
           ports:
             - containerPort: 9000
+          volumeMounts:
+            - mountPath: /scratch 
+              name: scratch-volume
+      volumes:
+        - name: scratch-volume
+          emptyDir:
+            sizeLimit: 500Mi
+
+
+          

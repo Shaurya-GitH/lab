@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: empty-dir
+  name: empty-dir
+  namespace: my-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: empty-dir
+  template:
+    metadata:
+      labels:
+        app: empty-dir
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /scratch
+            name: scratch-volume
+      - image: busybox
+        name: busybox
+        ports:
+        - containerPort: 9000
+        command: ["/bin/sh","-c"] #the command which is run for starting the container | overrides ENTRYPOINT
+        args: ["sleep 1000"] #args given to the command | overrides CMD
+        volumeMounts:
+          - mountPath: /scratch
+            name: scratch-volume
+      volumes:
+        - name: scratch-volume
+          emptyDir: #type of volume whose lifetime is as long as the pod | useful for sharing data between containers in the same pod
+            sizeLimit: 500Mi
