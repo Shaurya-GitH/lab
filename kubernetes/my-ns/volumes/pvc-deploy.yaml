@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pvc-deploy
+  name: pvc-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pvc-deploy
+  template:
+    metadata:
+      labels:
+        app: pvc-deploy
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /pvc
+            name: my-volume
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: foo-pvc

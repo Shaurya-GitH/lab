@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: foo-pvc
+  namespace: my-ns
+spec:
+  accessModes:
+    - ReadWriteOnce # Volume can be mounted read-write by pods on a single node
+  resources:
+    requests:
+      storage: 500Mi # Amount of storage requested; entire PV is bound once matched
+  storageClassName: local-path # Selects the storage backend and provisioning behavior | storage class is a resource
+    # Kubernetes uses the StorageClass to select or dynamically provision a PV.
+    # The PVC is bound 1:1 to a single PV.
+    # The PV represents the actual storage created or selected by the StorageClass.
+

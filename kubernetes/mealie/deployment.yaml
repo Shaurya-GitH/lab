@@ -21,12 +21,12 @@ spec:
           ports:
             - containerPort: 9000
           volumeMounts:
-            - mountPath: /scratch 
-              name: scratch-volume
+            - mountPath: /app/data 
+              name: mealie-data
       volumes:
-        - name: scratch-volume
-          emptyDir:
-            sizeLimit: 500Mi
+        - name: mealie-data
+          persistentVolumeClaim:
+            claimName: mealie-data
 
 
           
