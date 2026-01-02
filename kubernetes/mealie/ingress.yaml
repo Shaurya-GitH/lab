@@ -5,7 +5,7 @@ metadata:
   name: mealie
   namespace: mealie
 spec:
-  defaultBackend:
+  defaultBackend: #default backend is the service where the request is forwarded when none of the rules match
     service:
       name: mealie
       port:

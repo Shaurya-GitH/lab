@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wesplit
+  name: wesplit
+  namespace: wesplit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wesplit
+  template:
+    metadata:
+      labels:
+        app: wesplit
+    spec:
+      imagePullSecrets: #docker-registry secret required to pull images from a private repo
+        - name: dockerhub-cred #name of the docker-registry secret created
+      containers:
+        - image: shauryamdocker/wesplit:v2
+          name: wesplit
+          ports:
+            - containerPort: 8080
+          env:
+            - name: spring.datasource.url
+              value: jdbc:mysql://mysql:3306/wesplit
+            - name: spring.data.redis.host
+              value: redis
+      initContainers: 
+        #all init containers need to exit with 0 before actual containers are run
+        #init containers are run in sequence
+        - image: busybox:1.28
+          name: init-mysql
+          command: ['sh','-c',"until nslookup mysql; do echo waiting for mysql;sleep 2; done"] #checks the connection to a dependent service
+        - image: busybox:1.28
+          name: init-redis
+          command: ['sh','-c',"until nslookup redis; do echo waiting for mysql;sleep 2; done"] 
+
+
