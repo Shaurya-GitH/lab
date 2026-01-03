@@ -19,9 +19,13 @@ spec:
         - image: mysql:latest
           name: mysql
           env:  #environment variables for the container 
-            - name: MYSQL_ROOT_PASSWORD #name-value pair
-              value: root@123
-            - name: MYSQL_DATABASE
+            - name: MYSQL_ROOT_PASSWORD 
+              valueFrom: #value can be fetched from a generic secret using its name and key
+                #a secret is similar to a configmap but it's specifically used to store confidential data
+                secretKeyRef:
+                    name: mysql-password
+                    key: password
+            - name: MYSQL_DATABASE #name-value pair
               value: wesplit
           ports:
             - containerPort: 3306
