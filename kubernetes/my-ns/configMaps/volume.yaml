@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: volume
+  name: volume-pod
+  namespace: my-ns
+spec:
+  containers:
+  - image: httpd
+    name: volume-pod
+    volumeMounts:
+      - mountPath: /configmap
+        name: cm-volume
+        readOnly: true #volume mounts can be set as read only
+  volumes:
+    - name: cm-volume
+      configMap:
+        name: cert
+        items: #optional
+            - key: cert.crt
+              path: ./cert.crt #used for customizing the path of the file
+
+# config maps can also be mounted as volumes
+# the keys become separate files and the content of their files are the values
+# useful for storing certificates or keys instead of using env
+# values from volumes update shortly after updating the config map without the need for pod restart unlike env

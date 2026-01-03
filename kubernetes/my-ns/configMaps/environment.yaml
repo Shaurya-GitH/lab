@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: environment
+  name: environment
+  namespace: my-ns
+spec:
+  containers:
+  - image: httpd
+    name: environment
+    env:
+     - name: var 
+       valueFrom:
+         configMapKeyRef:
+            name: configmap-var
+            key: configmap-var
+# configmap is a key value pair used for non-confidential information
+# the values can be used as environment variables using valueFrom or envFrom fields
+
