@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: busyboxjob
+  namespace: my-ns
+spec:
+  jobTemplate:
+    metadata:
+      name: busyboxjob
+    spec:
+      completions: 5 #number of pods required to be successful for job completion
+      template:
+        metadata:
+        spec:
+          containers:
+          - command:
+            - sh
+            - -c
+            - echo hello world
+            image: busybox
+            name: busyboxjob
+          restartPolicy: OnFailure #rerun the job until success
+  schedule: '*/1 * * * *' # "minute hour date month day"
+
+# CronJob starts onetime jobs on a repeating schedule
