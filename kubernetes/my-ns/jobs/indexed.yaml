@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: indexed 
+  namespace: my-ns
+spec:
+  completions: 6 #number of successful pods required for completion
+  parallelism: 2 #number of pods running in parallel
+  completionMode: Indexed #each pod gets an index and pods of all indexes must be successful for completion 
+  backoffLimitPerIndex: 1 #number of retries per index
+  maxFailedIndexes: 3 #maximum failed indexes before failing job
+  ttlSecondsAfterFinished: 100 #seconds after the job completion the job and pods will be deleted
+  template:
+    metadata:
+    spec:
+      containers:
+      - command: # In yaml, array is equivalent to a list
+        - sh
+        - -c #executes the following string as a command
+        - echo hello world
+          #this command is equivalent to ["sh","-c","echo hello"]
+        image: busybox
+        name: indexed
+      restartPolicy: Never #required field
+
+# A job is a one-off task which runs pods until the specified amount if completed
+# ttl is recommended because without it, the cluster will face performance degradation even with the garbage collection
