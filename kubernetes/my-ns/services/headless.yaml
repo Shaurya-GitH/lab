@@ -21,3 +21,7 @@ spec:
   
   # It is mostly used with statefulsets where the client can decide which indexed pod to hit using the pod's subdomain
   # example - mysql-0.headless will resolve to the IP of the mysql-0 pod
+  
+  # Headless service is important because it allows others to choose which pod they want to target.
+  # example - a sidecar container choosing the first or second pod to update it's labels.
+
