@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  LD_AUTH_PROXY_LOGOUT_URL: ""
+  LD_AUTH_PROXY_USERNAME_HEADER: ""
+  LD_CONTAINER_NAME: linkding
+  LD_CONTEXT_PATH: ""
+  LD_CSRF_TRUSTED_ORIGINS: ""
+  LD_DB_DATABASE: ""
+  LD_DB_ENGINE: ""
+  LD_DB_HOST: ""
+  LD_DB_OPTIONS: ""
+  LD_DB_PASSWORD: ""
+  LD_DB_PORT: ""
+  LD_DB_USER: ""
+  LD_DISABLE_BACKGROUND_TASKS: "False"
+  LD_DISABLE_LOGIN_FORM: "False"
+  LD_DISABLE_URL_VALIDATION: "False"
+  LD_ENABLE_AUTH_PROXY: "False"
+  LD_HOST_DATA_DIR: ./data
+  LD_HOST_PORT: "9090"
+  LD_SUPERUSER_NAME: admin
+  LD_SUPERUSER_PASSWORD: admin
+kind: ConfigMap
+metadata:
+  name: linkding-config
+  namespace: linkding

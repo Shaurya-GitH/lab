@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: environment
+  name: environment
+  namespace: my-ns
+spec:
+  containers:
+  - image: httpd
+    name: environment
+    envFrom: # adding a whole configmap as environment
+    - configMapRef:
+        name: configMapVar 
+
+# Configmaps can directly be created through .env files using --from-env-file=
+# When creating configMaps through folders, the files become keys and the content of the files are the values
+
