@@ -1,0 +1,38 @@
+apiVersion: v1
+data:
+  AVATAR_2X_URL: https://media.licdn.com/dms/image/v2/D4E03AQEYGOi0mx2siA/profile-displayphoto-shrink_800_800/B4EZbOvwZaHcAs-/0/1747225349172?e=1770249600&v=beta&t=_qZi_-sPphxvjELW8cCDEG0Fy3sU12W3yiDPex2xpog
+  AVATAR_ALT: Shaurya Mehta Profile Pic
+  AVATAR_URL: https://media.licdn.com/dms/image/v2/D4E03AQEYGOi0mx2siA/profile-displayphoto-shrink_800_800/B4EZbOvwZaHcAs-/0/1747225349172?e=1770249600&v=beta&t=_qZi_-sPphxvjELW8cCDEG0Fy3sU12W3yiDPex2xpog
+  BIO: Software Engineer | Kubernetes | DevOps | Homelab | Problem Solver
+  BUTTON_ORDER: GITHUB,LINKED_IN,LEETCODE
+  CUSTOM_BUTTON_ALT_TEXT: 'Leetcode '
+  CUSTOM_BUTTON_COLOR: '#000000,#000000'
+  CUSTOM_BUTTON_ICON: fas file-alt,fas fa-cog
+  CUSTOM_BUTTON_NAME: Leetcode
+  CUSTOM_BUTTON_TEXT: LEETCODE
+  CUSTOM_BUTTON_TEXT_COLOR: '#ffffff,#ffffff'
+  CUSTOM_BUTTON_URL: https://leetcode.com/u/ShauryaLC/
+  FAVICON_URL: https://media.licdn.com/dms/image/v2/D4E03AQEYGOi0mx2siA/profile-displayphoto-shrink_800_800/B4EZbOvwZaHcAs-/0/1747225349172?e=1770249600&v=beta&t=_qZi_-sPphxvjELW8cCDEG0Fy3sU12W3yiDPex2xpog
+  FOOTER: Shaurya Mehta © 2026
+  GA_TRACKING_ID: G-XXXXXXXXXX
+  GITHUB: https://github.com/Shaurya-GitH
+  LANG: en
+  LINKED_IN: https://www.linkedin.com/in/shaurya-mehta-0b916a349/
+  META_AUTHOR: Shaurya Mehta
+  META_DESCRIPTION: Software Engineer | Kubernetes | DevOps | Homelab | Problem Solver
+  META_INDEX_STATUS: all
+  META_KEYWORDS: HomeLab, HTML, CSS, Engineering
+  META_TITLE: Shaurya Mehta
+  NAME: Shaurya Mehta
+  OG_DESCRIPTION: The home of Shaurya Mehta
+  OG_IMAGE: https://media.licdn.com/dms/image/v2/D4E03AQEYGOi0mx2siA/profile-displayphoto-shrink_800_800/B4EZbOvwZaHcAs-/0/1747225349172?e=1770249600&v=beta&t=_qZi_-sPphxvjELW8cCDEG0Fy3sU12W3yiDPex2xpog
+  OG_IMAGE_HEIGHT: "400"
+  OG_IMAGE_WIDTH: "400"
+  OG_SITE_NAME: Shaurya Mehta
+  OG_TITLE: Shaurya Mehta
+  OG_URL: https://ShauryaMehta.com
+  THEME: Dark
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: linktree-config

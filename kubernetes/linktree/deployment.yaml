@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: linktree
+  name: linktree
+  namespace: linktree
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linktree
+  template:
+    metadata:
+      labels:
+        app: linktree
+    spec:
+      containers:
+      - image: ghcr.io/timothystewart6/littlelink-server:latest
+        name: littlelink-server
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: linktree-config
+
