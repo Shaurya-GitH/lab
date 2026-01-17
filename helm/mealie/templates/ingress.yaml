@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  defaultBackend: #default backend is the service where the request is forwarded when none of the rules match
+    service:
+      name: {{ .Release.Name }}
+      port:
+        number: {{ .Values.port }}
+status:
+  loadBalancer: {}
+#the ingress resource is watched by the ingress controller
