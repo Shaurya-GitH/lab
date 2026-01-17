@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mysql-{{ .Release.Name }}
+  name: mysql-{{ .Release.Name }}
+spec:
+  ports:
+  - name: "{{ .Values.mysql.port }}"
+    port: {{ .Values.mysql.port }}
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app: mysql-{{ .Release.Name }}
+  type: ClusterIP

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Release.Name }}-frontend
+  name: {{ .Release.Name }}-frontend
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-frontend
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-frontend
+    spec:
+      imagePullSecrets:
+        - name: dockerhub-cred
+      containers:
+        - image: "{{ .Values.frontend.image }}:{{ .Values.frontend.tag }}"
+          name: {{ .Release.Name }}-frontend
+          ports:
+          - containerPort: 5173
+          env:
+          - name: VITE_BACKEND_DN
+            value: {{ .Values.host }} 

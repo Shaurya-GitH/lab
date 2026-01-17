@@ -1,0 +1,23 @@
+mysql:
+  image: mysql
+  tag: "latest"
+  port: 3307
+
+redis:
+  image: redis
+  tag: "8.4.0"
+  port: 6380
+
+backend:
+  image: shauryamdocker/wesplit
+  tag: "v2"
+  port: 8081
+  replicas: 1
+
+frontend:
+  image: shauryamdocker/wesplit-frontend
+  tag: "v2"
+  port: 5174
+  replicas: 1
+
+host: localhost

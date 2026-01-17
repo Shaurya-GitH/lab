@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: redis-{{ .Release.Name }}
+  name: redis-{{ .Release.Name }}
+spec:
+  ports:
+  - name: "{{ .Values.redis.port }}"
+    port: {{ .Values.redis.port }}
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: redis
+  type: ClusterIP

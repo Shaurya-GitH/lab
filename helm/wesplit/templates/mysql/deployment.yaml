@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql-{{ .Release.Name }}
+  name: mysql-{{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-{{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: mysql-{{ .Release.Name }}
+    spec:
+      containers:
+        - image: "{{ .Values.mysql.image }}:{{ .Values.mysql.tag }}"
+          name: mysql-{{ .Release.Name }}
+          env:  #environment variables for the container 
+            - name: MYSQL_ROOT_PASSWORD 
+              valueFrom: #value can be fetched from a generic secret using its name and key
+                #a secret is similar to a configmap but it's specifically used to store confidential data
+                secretKeyRef:
+                    name: mysql-password
+                    key: password
+            - name: MYSQL_DATABASE #name-value pair
+              value: {{ .Release.Name }}
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql-{{ .Release.Name }}data
+      volumes:
+        - name: mysql-{{ .Release.Name }}data
+          persistentVolumeClaim:
+            claimName: mysql-{{ .Release.Name }}data

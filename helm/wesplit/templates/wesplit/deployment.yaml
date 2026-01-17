@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Release.Name }}
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      imagePullSecrets: #docker-registry secret required to pull images from a private repo
+        - name: dockerhub-cred #name of the docker-registry secret created
+      containers:
+        - image: "{{ .Values.backend.image }}:{{ .Values.backend.tag }}"
+          name: {{ .Release.Name }}
+          ports:
+            - containerPort: 8080
+          env:
+            - name: spring.datasource.url
+              value: "jdbc:mysql://mysql-{{ .Release.Name }}:{{ .Values.mysql.port }}/{{ .Release.Name }}"
+            - name: spring.data.redis.host
+              value: redis-{{ .Release.Name }}
+            - name: spring.data.redis.port
+              value: "{{ .Values.redis.port }}"
+      initContainers: 
+        #all init containers need to exit with 0 before actual containers are run
+        #init containers are run in sequence
+        - image: busybox:1.28
+          name: init-mysql
+          command: ['sh','-c',"until nslookup mysql-{{ .Release.Name }}; do echo waiting for mysql;sleep 2; done"] #checks the connection to a dependent service
+        - image: busybox:1.28
+          name: init-redis
+          command: ['sh','-c',"until nslookup redis-{{ .Release.Name }}; do echo waiting for redis;sleep 2; done"] 
+
+
