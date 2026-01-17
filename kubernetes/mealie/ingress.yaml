@@ -13,3 +13,5 @@ spec:
 status:
   loadBalancer: {}
 #the ingress resource is watched by the ingress controller
+#The most specific rule is always followed
+#In case of rule collision, the ingress controller usually follows the oldest rule
