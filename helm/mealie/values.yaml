@@ -1,4 +1,3 @@
 replicas: 1
 image: ghcr.io/mealie-recipes/mealie
-tag: "v1.3.2"
 port: 9000
