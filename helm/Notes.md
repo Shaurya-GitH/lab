@@ -6,3 +6,4 @@
 - Separate the image name from the image tag to allow easier updation
 - Use the sha256 function in annotations of a deployment using a configmap as env to reload the deployment incase of configmap update
 - Use `helm show values [chart]` to get default values of a chart and direct the output to a file for configuration
+- Use `helm get values [release name] -n [namespace name]` to get the values supplied by the user for the release
