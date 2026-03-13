@@ -10,16 +10,17 @@ spec:
   - image: httpd
     name: volume-pod
     volumeMounts:
-      - mountPath: /configmap
+      - mountPath: /configmap/cert.crt
+        subPath: cert.crt #used for mounting a certain file instead of the whole directory. The whole directory is replaced by the volume in case the subPath is not set
         name: cm-volume
-        readOnly: true #volume mounts can be set as read only
+        readOnly: true #volume mounts can be set as read only.
   volumes:
     - name: cm-volume
       configMap:
         name: cert
         items: #optional
             - key: cert.crt
-              path: ./cert.crt #used for customizing the path of the file
+              path: cert.crt #used for customizing the path of the file
 
 # config maps can also be mounted as volumes
 # the keys become separate files and the content of their files are the values
