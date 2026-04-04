@@ -22,4 +22,6 @@
 
 - Updated default admin password for grafana in the new values.yaml file
 
-- helm upgrade prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --values=values.yaml
+- Use helm ls -n <Namespace> to get the release name
+
+- helm upgrade <Release-name> prometheus-community/kube-prometheus-stack -n monitoring --values=values.yaml
