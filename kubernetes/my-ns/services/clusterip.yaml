@@ -19,3 +19,5 @@ spec:
   type: ClusterIP
 status:
   loadBalancer: {}
+
+# service provides internal DNS and load balancing. Without a service, we can only access pods through their cluster IP address.
