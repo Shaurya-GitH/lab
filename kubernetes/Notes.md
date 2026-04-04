@@ -29,3 +29,7 @@
 - To update the values of a configmap or secret, you can get YAML from kubectl create and pipe it to kubectl apply
 
     `kubectl create configmap foo --from-file=/foo.properties --dry-run=client -o yaml | kubectl apply -f -`
+
+- Use the `describe` command to get essential resource information
+
+    kubectl describe svc/my-ns
