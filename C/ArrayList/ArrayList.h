@@ -1,9 +1,11 @@
 struct arrayList{
     int* arr;
-    int lastIndex;
+    int* lastIndex;
+    int* totalSize;
 };
-struct arrayList* create();
-void add(int value,struct arrayList *list);
-int get(int index,struct arrayList *list);
-void remove(int index,struct arrayList *list);
-int size(struct arrayList *arrayList);
+struct arrayList* al_create();
+int al_size(struct arrayList *list);
+void al_add(int value,struct arrayList *list);
+int al_get(int index,struct arrayList *list);
+void al_remove(int index,struct arrayList *list);
+void al_freeList(struct arrayList *list);
