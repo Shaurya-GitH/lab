@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int hash(char *str) {
+static int hash(char *str) {
     unsigned long hash = 5381;
     int c;
     while ((c = *str++)) {
