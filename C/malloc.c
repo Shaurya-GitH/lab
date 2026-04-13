@@ -9,10 +9,10 @@ int main(){
         int year;
     };
 
-    struct car *kwid=malloc(sizeof(struct car));
-    strcpy(kwid->name,"kwid");
-    kwid->year=2018;
-    printf("car name is : %s, and model is %d\n",kwid->name,kwid->year);
-    free(kwid);
+    struct car *bmw=malloc(sizeof(struct car));
+    strcpy(bmw->name,"bmw");
+    bmw->year=2018;
+    printf("car name is : %s, and model is %d\n",bmw->name,bmw->year);
+    free(bmw);
     return 0;
 }

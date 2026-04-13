@@ -1,7 +1,7 @@
 struct arrayList{
     int* arr;
-    int* lastIndex;
-    int* totalSize;
+    int lastIndex;
+    int totalSize;
 };
 struct arrayList* al_create();
 int al_size(struct arrayList *list);
